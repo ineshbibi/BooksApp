@@ -1,25 +1,13 @@
 import React from "react";
-import { createStore } from "redux";
 import { Provider } from 'react-redux';
-import { render, fireEvent, cleanup } from '@testing-library/react'
-import "jest-dom/extend-expect";
+import { render, cleanup } from '@testing-library/react'
+import "@testing-library/jest-dom";
 import Result from './result';
+import store from '../../redux/store'
 
 afterEach(cleanup);
 
-const initialState = { booksLength: 0 }
-function reducer(state = initialState, action) {
-    switch (action.type) {
-        case "GET_BOOKS_SUCCESS":
-            return {
-                ...state,
-                booksLength: 2425
-            };
-        default:
-            return state;
-    }
-}
-function renderWithRedux(component, { startState, store = createStore(reducer, startState) } = {}) {
+function renderWithRedux(component) {
     return {
         ...render(<Provider store={store}> { component }</Provider>)
     }
@@ -27,5 +15,5 @@ function renderWithRedux(component, { startState, store = createStore(reducer, s
 
 it("renders with redux", () => {
     const { getByTestId } = renderWithRedux(<Result />);
-    expect(getByTestId('booksNb')).toHaveTextContent("2425")
+    expect(getByTestId('booksNb')).toBeInTheDocument()
 })

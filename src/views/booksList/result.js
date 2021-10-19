@@ -10,9 +10,11 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 function Result() {
   const { books,booksLength, isLoading } = useSelector(state => state.booksReducer);
-  const booksList = isLoading ? (<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      Is Loading ...
-    </Box>) : books.map(book => {
+  const booksList = isLoading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          Is Loading ...
+    </Box>) :
+    books.map(book => {
       return(<TableRow
               key={book.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -28,8 +30,8 @@ function Result() {
     });
   return (
     <div className="cards"><TableContainer component={Paper}>
-      <span>Books Numbers: </span>
-      <span data-testid="booksNb">{booksLength}</span>
+      <span data-testid="booksNb">Books Numbers: </span>
+      {<span>{booksLength}</span>}
       <Table sx={{ minWidth: 650 }} aria-label="simple table" title='booksTitle'>
         <TableHead>
           <TableRow>
