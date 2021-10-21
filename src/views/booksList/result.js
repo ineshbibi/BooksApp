@@ -7,13 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 function Result() {
   const { books,booksLength, isLoading } = useSelector(state => state.booksReducer);
   const booksList = isLoading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <TableRow>
+        <TableCell style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           Is Loading ...
-        </Box>) :
+        </TableCell>
+      </TableRow>) :
     books.map(book => {
       return(<TableRow
               key={book.id}
