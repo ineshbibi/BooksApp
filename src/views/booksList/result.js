@@ -13,7 +13,7 @@ function Result() {
   const booksList = isLoading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           Is Loading ...
-    </Box>) :
+        </Box>) :
     books.map(book => {
       return(<TableRow
               key={book.id}
